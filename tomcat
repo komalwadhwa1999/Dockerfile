@@ -1,0 +1,15 @@
+FROM tomcat:latest
+
+LABEL maintainer="komal171408.cse@chitkara.edu.in"
+LABEL author="Komal"
+
+RUN apt update && apt install -y net-tools curl telnet vim
+RUN mv webapps webapps2
+RUN mv webapps.dist/ webapps
+COPY helloworld.war /usr/local/tomcat/webapps/
+ENV role=app
+ENV env=dev
+ENV name=komal
+EXPOSE 8080
+
+CMD ["catalina.sh", "run"]
